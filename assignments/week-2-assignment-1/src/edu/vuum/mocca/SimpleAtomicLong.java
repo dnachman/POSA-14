@@ -23,13 +23,14 @@ class SimpleAtomicLong
     /**
      * The ReentrantReadWriteLock used to serialize access to mValue.
      */
-    // TODO - add the implementation
+    // zTODO - add the implementation
+    ReentrantReadWriteLock reentrantReadWriteLock = new ReentrantReadWriteLock();
 
     /**
      * Creates a new SimpleAtomicLong with the given initial value.
      */
     public SimpleAtomicLong(long initialValue) {
-        // TODO - you fill in here
+        // zTODO - you fill in here
     	mValue = initialValue;
     }
 
@@ -39,8 +40,10 @@ class SimpleAtomicLong
      * @returns The current value
      */
     public long get() {
-        // TODO - you fill in here
+        // zTODO - you fill in here
+    	
     	return mValue;
+    	
     }
 
     /**
@@ -49,8 +52,10 @@ class SimpleAtomicLong
      * @returns the updated value
      */
     public long decrementAndGet() {
-        // TODO - you fill in here
+        // zTODO - you fill in here
+    	reentrantReadWriteLock.writeLock().lock();
     	mValue = mValue - 1;
+    	reentrantReadWriteLock.writeLock().unlock();
     	return mValue;
     }
 
@@ -60,9 +65,11 @@ class SimpleAtomicLong
      * @returns the previous value
      */
     public long getAndIncrement() {
-        // TODO - you fill in here
+        // zTODO - you fill in here
+    	reentrantReadWriteLock.writeLock().lock();
     	long tempValue = mValue;
     	mValue = mValue + 1;
+    	reentrantReadWriteLock.writeLock().unlock();
     	return tempValue;
     	
     }
@@ -73,9 +80,11 @@ class SimpleAtomicLong
      * @returns the previous value
      */
     public long getAndDecrement() {
-        // TODO - you fill in here
+        // zTODO - you fill in here
+    	reentrantReadWriteLock.writeLock().lock();
     	long tempValue = mValue;
     	mValue = mValue - 1;
+    	reentrantReadWriteLock.writeLock().unlock();
     	return tempValue;
     }
 
@@ -85,8 +94,10 @@ class SimpleAtomicLong
      * @returns the updated value
      */
     public long incrementAndGet() {
-        // TODO - you fill in here
+        // zTODO - you fill in here
+    	reentrantReadWriteLock.writeLock().lock();
     	mValue = mValue + 1;
+    	reentrantReadWriteLock.writeLock().unlock();
     	return mValue;
     }
 }
